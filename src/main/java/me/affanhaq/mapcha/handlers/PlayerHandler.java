@@ -8,12 +8,17 @@ import me.affanhaq.mapcha.tasks.SendPlayerToServerTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -21,7 +26,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Collections;
 import java.util.Random;
 
-import static me.affanhaq.mapcha.Config.*;
+import static me.affanhaq.mapcha.Config.ALLOWED_COMMANDS;
+import static me.affanhaq.mapcha.Config.BYPASS_PERMISSION;
+import static me.affanhaq.mapcha.Config.USE_CACHE;
 
 public class PlayerHandler implements Listener {
 
@@ -119,6 +126,24 @@ public class PlayerHandler implements Listener {
         event.setCancelled(
                 mapcha.getPlayerManager().getPlayer(event.getPlayer()) != null && !validCommand(event.getMessage())
         );
+    }
+
+    public boolean cancelIfCaptchaUnsolved(Cancellable c, Player player) {
+        boolean cancelled = mapcha.getPlayerManager().getPlayer(player) != null;
+        c.setCancelled(cancelled);
+        return cancelled;
+    }
+
+    @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+        if(event.getTo() == null) return;
+        if(event.getFrom().distanceSquared(event.getTo()) == 0) return;
+        cancelIfCaptchaUnsolved(event, event.getPlayer());
+    }
+
+    @EventHandler
+    public void onItemDrop(PlayerDropItemEvent event) {
+        cancelIfCaptchaUnsolved(event, event.getPlayer());
     }
 
     /**
