@@ -8,7 +8,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.util.Random;
@@ -21,11 +23,10 @@ public class CaptchaPlayer {
 
     private final ItemStack[] contents;
     private final ItemStack[] armour;
-    private int tries;
     private final long lastTime;
     private final long seed;
-
     private final int kickPlayerTask;
+    private int tries;
 
     public CaptchaPlayer(Player player, String captcha, Mapcha mapcha) {
         this.player = player;

@@ -18,6 +18,10 @@ public class SendPlayerToServerTask implements Runnable {
         this.player = player;
     }
 
+    public static long delay() {
+        return 15;
+    }
+
     @Override
     public void run() {
         if (SEND_TO_SERVER && SUCCESS_SERVER != null && !SUCCESS_SERVER.isEmpty()) {
@@ -26,9 +30,5 @@ public class SendPlayerToServerTask implements Runnable {
             out.writeUTF(SUCCESS_SERVER);
             player.sendPluginMessage(mapcha, "BungeeCord", out.toByteArray());
         }
-    }
-
-    public static long delay() {
-        return 15;
     }
 }

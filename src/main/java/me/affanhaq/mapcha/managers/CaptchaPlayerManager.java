@@ -4,7 +4,8 @@ import me.affanhaq.mapcha.player.CaptchaPlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CaptchaPlayerManager {

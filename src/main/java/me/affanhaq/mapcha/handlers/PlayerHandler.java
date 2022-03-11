@@ -15,8 +15,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -136,8 +134,8 @@ public class PlayerHandler implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        if(event.getTo() == null) return;
-        if(event.getFrom().distanceSquared(event.getTo()) == 0) return;
+        if (event.getTo() == null) return;
+        if (event.getFrom().distanceSquared(event.getTo()) == 0) return;
         cancelIfCaptchaUnsolved(event, event.getPlayer());
     }
 

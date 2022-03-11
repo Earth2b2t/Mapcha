@@ -13,16 +13,16 @@ public class CaptchaFailureEvent extends Event {
         this.player = player;
     }
 
+    public static HandlerList getHandlerList() {
+        return HANDLERS;
+    }
+
     public CaptchaPlayer getPlayer() {
         return player;
     }
 
     @Override
     public @NotNull HandlerList getHandlers() {
-        return HANDLERS;
-    }
-
-    public static HandlerList getHandlerList() {
         return HANDLERS;
     }
 

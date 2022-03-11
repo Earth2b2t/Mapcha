@@ -6,7 +6,10 @@ import me.affanhaq.keeper.data.ConfigValue;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.bukkit.ChatColor.*;
+import static org.bukkit.ChatColor.GREEN;
+import static org.bukkit.ChatColor.RED;
+import static org.bukkit.ChatColor.RESET;
+import static org.bukkit.ChatColor.YELLOW;
 
 @ConfigFile("config.yml")
 public class Config {

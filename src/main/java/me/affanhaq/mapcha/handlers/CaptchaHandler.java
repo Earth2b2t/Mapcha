@@ -10,7 +10,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import static me.affanhaq.mapcha.Config.*;
+import static me.affanhaq.mapcha.Config.MESSAGE_RETRY;
+import static me.affanhaq.mapcha.Config.MESSAGE_SUCCESS;
+import static me.affanhaq.mapcha.Config.PREFIX;
+import static me.affanhaq.mapcha.Config.TRIES;
+import static me.affanhaq.mapcha.Config.USE_CACHE;
 
 public class CaptchaHandler implements Listener {
 
