@@ -15,6 +15,7 @@ import java.util.Random;
 
 public class CaptchaPlayer {
 
+    private static final String FONT_NAME = "Calibri";
     private final Player player;
     private final String captcha;
 
@@ -62,10 +63,10 @@ public class CaptchaPlayer {
 
         String title = Config.TITLE;
         g.setColor(foreground);
-        g.setFont(new Font("Arial", Font.BOLD, 30));
+        g.setFont(new Font(FONT_NAME, Font.BOLD, 30));
         g.drawString(title, (int) ((image.getWidth() - g.getFontMetrics().getStringBounds(title, g).getWidth()) / 2), 30);
 
-        g.setFont(new Font("Arial", Font.BOLD, 10));
+        g.setFont(new Font(FONT_NAME, Font.BOLD, 10));
 
         String sTries = "Tries Left: ";
         g.setColor(foreground);
@@ -79,7 +80,7 @@ public class CaptchaPlayer {
         g.setColor((Config.TIME_LIMIT * 1000L) - (System.currentTimeMillis() - lastTime) == 1000 ? Color.RED : Color.GREEN);
         g.drawString(new SimpleDateFormat("ss").format((Config.TIME_LIMIT * 1000L) - (System.currentTimeMillis() - lastTime)) + " sec", (int) (((image.getWidth() - g.getFontMetrics().getStringBounds(sTime, g).getWidth()) / 2) + g.getFontMetrics().getStringBounds(sTime, g).getWidth() + 2), 55);
 
-        g.setFont(new Font("Arial", Font.BOLD, 40));
+        g.setFont(new Font(FONT_NAME, Font.BOLD, 40));
         g.setColor(foreground);
         g.drawString(captcha, (int) ((image.getWidth() - g.getFontMetrics().getStringBounds(captcha, g).getWidth()) / 2), 105);
 
