@@ -28,6 +28,9 @@ public class Config {
     @ConfigValue("captcha.cache")
     public static boolean USE_CACHE = true;
 
+    @ConfigValue("captcha.font_name")
+    public static String FONT_NAME = "Calibri";
+
     @ConfigValue("captcha.tries")
     public static int TRIES = 3;
 
