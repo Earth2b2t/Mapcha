@@ -78,7 +78,7 @@ public class CaptchaPlayer {
         g.setColor(foreground);
         g.drawString(sTime, (int) ((image.getWidth() - g.getFontMetrics().getStringBounds(sTime, g).getWidth()) / 2), 55);
         g.setColor((Config.TIME_LIMIT * 1000L) - (System.currentTimeMillis() - lastTime) == 1000 ? Color.RED : Color.GREEN);
-        g.drawString(new SimpleDateFormat("ss").format((Config.TIME_LIMIT * 1000L) - (System.currentTimeMillis() - lastTime)) + " sec", (int) (((image.getWidth() - g.getFontMetrics().getStringBounds(sTime, g).getWidth()) / 2) + g.getFontMetrics().getStringBounds(sTime, g).getWidth() + 2), 55);
+        g.drawString(new SimpleDateFormat("ss").format((Config.TIME_LIMIT * 1000L) - (System.currentTimeMillis() - lastTime)) + "s", (int) (((image.getWidth() - g.getFontMetrics().getStringBounds(sTime, g).getWidth()) / 2) + g.getFontMetrics().getStringBounds(sTime, g).getWidth() + 2), 55);
 
         g.setFont(new Font(Config.FONT_NAME, Font.BOLD, 40));
         g.setColor(foreground);
