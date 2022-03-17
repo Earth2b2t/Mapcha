@@ -1,11 +1,13 @@
 package me.affanhaq.mapcha.handlers;
 
+import me.affanhaq.mapcha.Config;
 import me.affanhaq.mapcha.Mapcha;
 import me.affanhaq.mapcha.events.CaptchaFailureEvent;
 import me.affanhaq.mapcha.events.CaptchaSuccessEvent;
 import me.affanhaq.mapcha.player.CaptchaPlayer;
 import me.affanhaq.mapcha.tasks.SendPlayerToServerTask;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -40,6 +42,10 @@ public class PlayerHandler implements Listener {
     public void onJoin(PlayerJoinEvent event) {
 
         Player player = event.getPlayer();
+        if (Config.TELEPORT_TO_HIGHEST) {
+            Location loc = player.getLocation();
+            player.teleport(loc.getWorld().getHighestBlockAt(loc.getBlockX(), loc.getBlockZ()).getLocation().add(0.5, 0, 0.5));
+        }
 
         // checking if player has permission to bypass the captcha or player has already completed the captcha before
         // by default OPs have the '*' permission so this method will return true

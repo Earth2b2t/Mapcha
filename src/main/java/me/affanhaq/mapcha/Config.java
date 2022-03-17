@@ -34,6 +34,9 @@ public class Config {
     @ConfigValue("captcha.time")
     public static int TIME_LIMIT = 30;
 
+    @ConfigValue("captcha.teleport_to_highest")
+    public static boolean TELEPORT_TO_HIGHEST = false;
+
     @ConfigValue("server.enabled")
     public static boolean SEND_TO_SERVER = false;
 
