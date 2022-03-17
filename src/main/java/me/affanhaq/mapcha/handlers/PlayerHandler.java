@@ -28,6 +28,8 @@ import java.util.Random;
 
 import static me.affanhaq.mapcha.Config.ALLOWED_COMMANDS;
 import static me.affanhaq.mapcha.Config.BYPASS_PERMISSION;
+import static me.affanhaq.mapcha.Config.SEND_TO_SERVER;
+import static me.affanhaq.mapcha.Config.SUCCESS_SERVER;
 import static me.affanhaq.mapcha.Config.USE_CACHE;
 
 public class PlayerHandler implements Listener {
@@ -49,13 +51,9 @@ public class PlayerHandler implements Listener {
 
         // checking if player has permission to bypass the captcha or player has already completed the captcha before
         // by default OPs have the '*' permission so this method will return true
-        if (player.hasPermission(BYPASS_PERMISSION) || (USE_CACHE && mapcha.getCacheManager().isCached(player))) {
-            Bukkit.getScheduler().scheduleSyncDelayedTask(
-                    mapcha,
-                    new SendPlayerToServerTask(mapcha, player),
-                    SendPlayerToServerTask.delay()
-            );
-            return;
+        if ((SEND_TO_SERVER && SUCCESS_SERVER != null && !SUCCESS_SERVER.isEmpty()) &&
+                (player.hasPermission(BYPASS_PERMISSION) || (USE_CACHE && mapcha.getCacheManager().isCached(player)))) {
+            new SendPlayerToServerTask(mapcha, player.getPlayer()).start(mapcha);
         }
 
         // creating a captcha player

@@ -13,6 +13,8 @@ import org.bukkit.event.Listener;
 import static me.affanhaq.mapcha.Config.MESSAGE_RETRY;
 import static me.affanhaq.mapcha.Config.MESSAGE_SUCCESS;
 import static me.affanhaq.mapcha.Config.PREFIX;
+import static me.affanhaq.mapcha.Config.SEND_TO_SERVER;
+import static me.affanhaq.mapcha.Config.SUCCESS_SERVER;
 import static me.affanhaq.mapcha.Config.TRIES;
 import static me.affanhaq.mapcha.Config.USE_CACHE;
 
@@ -43,11 +45,9 @@ public class CaptchaHandler implements Listener {
         player.cancelKickTask();
 
         mapcha.getPlayerManager().remove(player);
-        Bukkit.getScheduler().scheduleSyncDelayedTask(
-                mapcha,
-                new SendPlayerToServerTask(mapcha, player.getPlayer()),
-                SendPlayerToServerTask.delay()
-        );
+        if (SEND_TO_SERVER && SUCCESS_SERVER != null && !SUCCESS_SERVER.isEmpty()) {
+            new SendPlayerToServerTask(mapcha, player.getPlayer()).start(mapcha);
+        }
     }
 
     @EventHandler
