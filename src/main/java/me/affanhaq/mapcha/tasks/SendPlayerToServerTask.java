@@ -8,13 +8,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import static me.affanhaq.mapcha.Config.SEND_TO_SERVER;
 import static me.affanhaq.mapcha.Config.SUCCESS_SERVER;
 
 public class SendPlayerToServerTask extends BukkitRunnable {
 
     private static final int DELAY = 15;
-    private static final int PERIOD = 300;
+    private static final int PERIOD = 10000;
     private static final int MAX_RETRY = 10;
     private final Mapcha mapcha;
     private final Player player;
@@ -41,12 +40,10 @@ public class SendPlayerToServerTask extends BukkitRunnable {
             return;
         }
 
-        if (SEND_TO_SERVER && SUCCESS_SERVER != null && !SUCCESS_SERVER.isEmpty()) {
-            ByteArrayDataOutput out = ByteStreams.newDataOutput();
-            out.writeUTF("Connect");
-            out.writeUTF(SUCCESS_SERVER);
-            player.sendPluginMessage(mapcha, "BungeeCord", out.toByteArray());
-            retry++;
-        }
+        ByteArrayDataOutput out = ByteStreams.newDataOutput();
+        out.writeUTF("Connect");
+        out.writeUTF(SUCCESS_SERVER);
+        player.sendPluginMessage(mapcha, "BungeeCord", out.toByteArray());
+        retry++;
     }
 }
