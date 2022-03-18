@@ -29,7 +29,7 @@ public class Config {
     public static boolean USE_CACHE = true;
 
     @ConfigValue("captcha.font_name")
-    public static String FONT_NAME = "Calibri";
+    public static String FONT_NAME = "Consolas";
 
     @ConfigValue("captcha.tries")
     public static int TRIES = 3;
